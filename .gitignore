@@ -18,3 +18,6 @@ src/parameter/param_enums.rs
 env/
 /*.sh
 gurobi
+
+.envrc
+.direnv
