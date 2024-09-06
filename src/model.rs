@@ -36,7 +36,7 @@ macro_rules! impl_object_list_getter {
         #[doc = "Retrieve the "]
         #[doc=$noun]
         #[doc = " in the model. \n\n # Errors\nReturns an error if a model update is needed"]
-        pub fn $name<'a>(&'a self) -> Result<&'a [$t]> {
+        pub fn $name(&self) -> Result<&[$t]> {
             if self.$attr.model_update_needed() {
                 Err(Error::ModelUpdateNeeded)
             } else {
@@ -536,7 +536,7 @@ impl Model {
     /// m.add_constr("c1", c!(x <= 1 - y))?;
     /// # Ok::<(), grb::Error>(())
     /// ```
-    pub fn add_constr(&mut self, name: &str, con: IneqExpr) -> Result<Constr> where {
+    pub fn add_constr(&mut self, name: &str, con: IneqExpr) -> Result<Constr> {
         let (lhs, sense, rhs) = con.into_normalised_linear()?;
         let constrname = CString::new(name)?;
         let (vinds, cval) = self.get_coeffs_indices_build(&lhs)?;
@@ -898,7 +898,7 @@ impl Model {
             return Err(Error::ModelUpdateNeeded);
         }
         let n = CString::new(name)?;
-        let mut idx = i32::min_value();
+        let mut idx = i32::MIN;
         self.check_apicall(unsafe { ffi::GRBgetconstrbyname(self.ptr, n.as_ptr(), &mut idx) })?;
         if idx < 0 {
             Ok(None)
@@ -920,7 +920,7 @@ impl Model {
             return Err(Error::ModelUpdateNeeded);
         }
         let n = CString::new(name)?;
-        let mut idx = i32::min_value();
+        let mut idx = i32::MIN;
         self.check_apicall(unsafe { ffi::GRBgetvarbyname(self.ptr, n.as_ptr(), &mut idx) })?;
         if idx < 0 {
             Ok(None)
