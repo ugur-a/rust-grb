@@ -77,6 +77,18 @@ extern "C" {
         constrname: *const c_str,
     ) -> c_int;
 
+    pub fn GRBaddgenconstrIndicator(
+        model: *mut GRBmodel,
+        name: c_str,
+        binvar: c_int,
+        binval: c_int,
+        nvars: c_int,
+        ind: *const c_int,
+        val: *const c_double,
+        sense: c_char,
+        rhs: c_double,
+    ) -> c_int;
+
     pub fn GRBaddqconstr(
         model: *mut GRBmodel,
         numlnz: c_int,
