@@ -251,6 +251,18 @@ extern "C" {
 
     pub fn GRBgetenv(model: *mut GRBmodel) -> *mut GRBenv;
 
+    pub fn GRBgetgenconstrIndicator(
+        mode: *mut GRBmodel,
+        id: c_int,
+        binvarP: *mut c_int,
+        binvalP: *mut c_int,
+        nvarsP: *mut c_int,
+        ind: *mut c_int,
+        val: *mut c_double,
+        senseP: *mut c_char,
+        rhsP: *mut c_double,
+    ) -> c_int;
+
     pub fn GRBgetpwlobj(
         model: *mut GRBmodel,
         var: c_int,
