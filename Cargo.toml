@@ -91,3 +91,6 @@ path = "examples/tsp_lazy_constraints.rs"
 
 [workspace.lints.clippy]
 useless_conversion = "allow"
+
+[workspace]
+exclude = ["grb-sys2"]
