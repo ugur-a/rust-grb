@@ -67,6 +67,7 @@ impl Callback for Cb {
 const INSTANCE: &'static str = "traininstance2";
 
 #[test]
+#[ignore] // TODO: traininstance2 is not in gzip format
 fn main() -> anyhow::Result<()> {
     let mut m = test_instance(INSTANCE)?;
     m.set_param(param::Seed, 1337)?;
