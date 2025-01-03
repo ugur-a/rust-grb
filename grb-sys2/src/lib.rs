@@ -204,7 +204,7 @@ extern "C" {
         lbpen: *const c_double,
         ubpen: *const c_double,
         rhspen: *const c_double,
-        feasobjP: *const c_double,
+        feasobjP: *mut c_double,
     ) -> c_int;
 
     pub fn GRBfixmodel(model: *mut GRBmodel, new_model: *mut *mut GRBmodel) -> c_int;
